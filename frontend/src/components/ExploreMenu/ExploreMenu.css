@@ -55,3 +55,11 @@
   background-color: #e2e2e2;
   border: none;
 }
+
+.scrollable {
+  cursor: grab;
+}
+
+.scrollable.dragging {
+  cursor: grabbing;
+}

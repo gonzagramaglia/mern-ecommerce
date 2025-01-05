@@ -79,7 +79,7 @@ export const menu_list = [
     menu_image: menu_2,
   },
   {
-    menu_name: "Deserts",
+    menu_name: "Desserts",
     menu_image: menu_3,
   },
   {
@@ -99,7 +99,7 @@ export const menu_list = [
     menu_image: menu_7,
   },
   {
-    menu_name: "Ramen",
+    menu_name: "Noodles",
     menu_image: menu_8,
   },
 ];
@@ -112,7 +112,7 @@ export const food_list = [
     price: 12,
     description:
       "Food provides essential nutrients for overall health and well-being",
-    category: "Salad",
+    category: "Salads",
   },
   {
     _id: "2",
@@ -121,7 +121,7 @@ export const food_list = [
     price: 18,
     description:
       "Food provides essential nutrients for overall health and well-being",
-    category: "Salad",
+    category: "Salads",
   },
   {
     _id: "3",
@@ -130,7 +130,7 @@ export const food_list = [
     price: 16,
     description:
       "Food provides essential nutrients for overall health and well-being",
-    category: "Salad",
+    category: "Salads",
   },
   {
     _id: "4",
@@ -139,7 +139,7 @@ export const food_list = [
     price: 24,
     description:
       "Food provides essential nutrients for overall health and well-being",
-    category: "Salad",
+    category: "Salads",
   },
   {
     _id: "5",
