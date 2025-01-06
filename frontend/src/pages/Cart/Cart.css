@@ -99,6 +99,19 @@
   cursor: pointer;
 }
 
+.place-order-right {
+  width: 100%;
+  max-width: max(40%, 500px);
+}
+
+.cart-total {
+  margin-top: 7px;
+}
+
+.place-order .cart-total button {
+  margin-top: 30px;
+}
+
 .main-dish {
   width: 100%;
   filter: grayscale(40%);
