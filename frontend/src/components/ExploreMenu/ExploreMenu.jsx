@@ -45,6 +45,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         <h1>Explore our menu</h1>
         <p className="explore-menu-text">
           Choose from a diverse menu featuring a delectable array of dishes
+          crafted with the finest ingredients and culinary expertise
         </p>
         <div
           className={`explore-menu-list scrollable ${

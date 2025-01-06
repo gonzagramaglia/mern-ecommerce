@@ -10,6 +10,9 @@ import add_icon_white from "./add_icon_white.png";
 import add_icon_green from "./add_icon_green.png";
 import remove_icon_red from "./remove_icon_red.png";
 
+import play_store from "./play_store.png";
+import app_store from "./app_store.png";
+
 import linkedin_icon from "./linkedin_icon.png";
 import github_icon from "./github_icon.png";
 
@@ -59,6 +62,8 @@ import rating_stars from "./rating_stars.png";
 
 export const assets = {
   logo,
+  play_store,
+  app_store,
   github_icon,
   linkedin_icon,
   add_icon,
