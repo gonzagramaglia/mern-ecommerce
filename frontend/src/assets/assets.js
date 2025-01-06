@@ -10,6 +10,9 @@ import add_icon_white from "./add_icon_white.png";
 import add_icon_green from "./add_icon_green.png";
 import remove_icon_red from "./remove_icon_red.png";
 
+import linkedin_icon from "./linkedin_icon.png";
+import github_icon from "./github_icon.png";
+
 import menu_1 from "./menu_1.png";
 import menu_2 from "./menu_2.png";
 import menu_3 from "./menu_3.png";
@@ -56,6 +59,8 @@ import rating_stars from "./rating_stars.png";
 
 export const assets = {
   logo,
+  github_icon,
+  linkedin_icon,
   add_icon,
   order_icon,
   profile_image,
