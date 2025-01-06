@@ -40,6 +40,10 @@
   border-radius: 50px;
 }
 
+.header-contents button a:hover {
+  border-bottom: 1px solid #49557e;
+}
+
 @media (max-width: 1050px) {
   .header-contents {
     max-width: 45%;

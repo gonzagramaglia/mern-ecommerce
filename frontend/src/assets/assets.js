@@ -59,11 +59,13 @@ import food_31 from "./food_31.png";
 import food_32 from "./food_32.png";
 
 import rating_stars from "./rating_stars.png";
+import cross_icon from "./cross_icon.png";
 
 export const assets = {
   logo,
   play_store,
   app_store,
+  cross_icon,
   github_icon,
   linkedin_icon,
   add_icon,

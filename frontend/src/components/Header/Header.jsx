@@ -10,7 +10,9 @@ const Header = () => {
             Choose from a diverse menu featuring a delectable array of dishes
             crafted with the finest ingredients and culinary expertise
           </p>
-          <button>View Menu</button>
+          <button>
+            <a href="#explore-menu">View Menu</a>
+          </button>
         </div>
       </div>
     </>
