@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "3.2.1",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "author": "Gonzalo Gramaglia",
+  "license": "ISC",
+  "description": "Complex CRUD fullstack app",
+  "dependencies": {
+    "bcrypt": "5.1.1",
+    "body-parser": "1.20.2",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.20",
+    "jsonwebtoken": "9.0.2",
+    "mongoose": "8.2.2",
+    "nodemon": "3.1.9",
+    "stripe": "14.23.0",
+    "validator": "13.11.0"
+  }
+}
