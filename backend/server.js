@@ -3,6 +3,7 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 import { PORT } from "./config/envar.js";
 import foodRouter from "./routes/food.js";
+import userRouter from "./routes/user.js";
 
 // app config
 const app = express();
@@ -16,6 +17,7 @@ connectDB();
 
 // api endpoints
 app.use("/api/food", foodRouter);
+app.use("/api/user", userRouter);
 app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => {
