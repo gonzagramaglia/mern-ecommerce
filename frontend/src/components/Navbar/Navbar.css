@@ -63,12 +63,12 @@
   cursor: pointer;
 }
 
-.navbar-search-icon {
+.navbar-basket-icon {
   position: relative;
   cursor: pointer;
 }
 
-.navbar-search-icon .dot {
+.navbar-basket-icon .dot {
   position: absolute;
   min-width: 10px;
   min-height: 10px;

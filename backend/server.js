@@ -5,6 +5,7 @@ import { PORT } from "./config/envar.js";
 import foodRouter from "./routes/food.js";
 import userRouter from "./routes/user.js";
 import cartRouter from "./routes/cart.js";
+import orderRouter from "./routes/order.js";
 
 // app config
 const app = express();
@@ -20,6 +21,7 @@ connectDB();
 app.use("/api/food", foodRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => {

@@ -1,27 +1,135 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token, foodList, cartItems, url } =
+    useContext(StoreContext);
+
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    country: "",
+    city: "",
+    zipcode: "",
+    street: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // place order
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!token) {
+      toast.error("First you have to sign in!");
+      return;
+    }
+    let orderItems = [];
+    foodList.map((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    });
+    const orderData = {
+      address: data,
+      items: orderItems,
+      amount: getTotalCartAmount() + 300,
+    };
+    const res = await axios.post(url + "/api/order/place", orderData, {
+      headers: { token },
+    });
+    if (res.data.success) {
+      const { session_url } = res.data;
+      window.location.replace(session_url);
+    } else {
+      alert("Error");
+    }
+  };
+
   return (
     <>
-      <form className="place-order">
+      <form onSubmit={handleSubmit} className="place-order">
         <div className="place-order-left">
           <p className="title">Delivery Information</p>
           <div className="multi-fields">
-            <input type="text" placeholder="First Name"></input>
-            <input type="text" placeholder="Last Name"></input>
+            <input
+              onChange={handleChange}
+              name="firstName"
+              value={data.firstName}
+              type="text"
+              placeholder="First Name"
+              required
+            ></input>
+            <input
+              onChange={handleChange}
+              name="lastName"
+              value={data.lastName}
+              type="text"
+              placeholder="Last Name"
+              required
+            ></input>
           </div>
-          <input type="text" placeholder="Phone" />
-          <input type="email" placeholder="Email" />
+          <input
+            onChange={handleChange}
+            name="phone"
+            value={data.phone}
+            type="text"
+            placeholder="Phone"
+            required
+          />
+          <input
+            onChange={handleChange}
+            name="email"
+            value={data.email}
+            type="email"
+            placeholder="Email"
+            required
+          />
           <div className="multi-fields">
-            <input type="text" placeholder="Country"></input>
-            <input type="text" placeholder="City"></input>
+            <input
+              onChange={handleChange}
+              name="country"
+              value={data.country}
+              type="text"
+              placeholder="Country"
+              required
+            ></input>
+            <input
+              onChange={handleChange}
+              name="city"
+              value={data.city}
+              type="text"
+              placeholder="City"
+              required
+            ></input>
           </div>
           <div className="multi-fields">
-            <input type="text" placeholder="ZIP Code"></input>
-            <input type="text" placeholder="Street"></input>
+            <input
+              onChange={handleChange}
+              name="zipcode"
+              value={data.zipcode}
+              type="text"
+              placeholder="ZIP Code"
+              required
+            ></input>
+            <input
+              onChange={handleChange}
+              name="street"
+              value={data.street}
+              type="text"
+              placeholder="Street"
+              required
+            ></input>
           </div>
         </div>
         <div className="place-order-right">
@@ -36,18 +144,18 @@ const PlaceOrder = () => {
 
               <div className="cart-total-details">
                 <p>Delivery Fee</p>
-                <p>{getTotalCartAmount() === 0 ? 0 : 2} pesos</p>
+                <p>{getTotalCartAmount() === 0 ? 0 : 300} ARS</p>
               </div>
               <hr />
               <div className="cart-total-details">
                 <b>Total</b>
                 <b>
-                  {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}{" "}
-                  pesos
+                  {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 300}{" "}
+                  ARS
                 </b>
               </div>
             </div>
-            <button>PROCEED TO PAYMENT</button>
+            <button type="submit">PROCEED TO PAYMENT</button>
           </div>
         </div>
       </form>

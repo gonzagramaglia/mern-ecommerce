@@ -14,7 +14,7 @@
 .place-order-left .title {
   font-size: 30px;
   font-weight: 600;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .place-order-left input {
@@ -29,6 +29,10 @@
 .place-order-left .multi-fields {
   display: flex;
   gap: 10px;
+}
+
+.cart-total h2 {
+  margin-bottom: 15px;
 }
 
 .main-dish {

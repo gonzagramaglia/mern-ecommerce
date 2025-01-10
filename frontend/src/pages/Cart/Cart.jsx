@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { url, cartItems, foodList, removeFromCart, getTotalCartAmount } =
@@ -33,9 +34,9 @@ const Cart = () => {
                   <div className="cart-items-title cart-items-item">
                     <img src={url + "/images/" + item.image} alt={item.name} />
                     <p>{item.name}</p>
-                    <p>{item.price} pesos</p>
+                    <p>{item.price} ARS</p>
                     <p>{item_quantity}</p>
-                    <p>{item.price * item_quantity} pesos</p>
+                    <p>{item.price * item_quantity} ARS</p>
                     <img
                       onClick={() => removeFromCart(item._id)}
                       className="cross"
@@ -54,24 +55,27 @@ const Cart = () => {
             <div>
               <div className="cart-total-details">
                 <p>Subtotal</p>
-                <p>{getTotalCartAmount()} pesos</p>
+                <p>{getTotalCartAmount()} ARS</p>
               </div>
               <hr />
 
               <div className="cart-total-details">
                 <p>Delivery Fee</p>
-                <p>{getTotalCartAmount() === 0 ? 0 : 2} pesos</p>
+                <p>{getTotalCartAmount() === 0 ? 0 : 300} ARS</p>
               </div>
               <hr />
               <div className="cart-total-details">
                 <b>Total</b>
                 <b>
-                  {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}{" "}
-                  pesos
+                  {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 300}{" "}
+                  ARS
                 </b>
               </div>
             </div>
-            <button onClick={() => navigate("/order")}>
+            <button
+              onClick={() => navigate("/order")}
+              disabled={getTotalCartAmount() === 0}
+            >
               PROCEED TO CHECKOUT
             </button>
           </div>
@@ -80,7 +84,9 @@ const Cart = () => {
               <p>If you have a promo code, enter it here</p>
               <div className="cart-promocode-input">
                 <input type="text" placeholder="PROMOCODE" />
-                <button>Submit</button>
+                <button onClick={() => toast.error("Invalid promo code")}>
+                  Submit
+                </button>
               </div>
             </div>
           </div>
