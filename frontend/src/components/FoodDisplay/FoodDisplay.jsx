@@ -4,14 +4,14 @@ import { StoreContext as Store } from "../../context/StoreContext";
 import FoodItem from "../FoodItem/FoodItem";
 
 const FoodDisplay = ({ category }) => {
-  const { food_list } = useContext(Store);
+  const { foodList } = useContext(Store);
 
   return (
     <>
       <div className="food-display" id="food-display">
         <h2>Top dishes near you</h2>
         <div className="food-display-list">
-          {food_list.map((food_item, index) => {
+          {foodList.map((food_item, index) => {
             if (category === "All" || category === food_item.category) {
               return (
                 <FoodItem
