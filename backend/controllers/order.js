@@ -52,4 +52,38 @@ const placeOrder = async (req, res) => {
   }
 };
 
-export { placeOrder };
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
+  if (!orderId || typeof success === "undefined") {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid request: 'orderId' and 'success' are required",
+    });
+  }
+
+  try {
+    if (success === "true") {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      res.status(200).json({ success: true, message: "Paid" });
+    } else {
+      await orderModel.findByIdAndDelete(orderId);
+      res.status(202).json({ success: false, message: "Not Paid" });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+// user orders for frontend
+const fetchUserOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
+  } catch (err) {
+    console.error(err.message);
+    res.json({ success: false, message: err.message });
+  }
+};
+
+export { placeOrder, verifyOrder, fetchUserOrders };

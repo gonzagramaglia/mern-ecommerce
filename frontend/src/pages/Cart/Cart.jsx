@@ -31,7 +31,7 @@ const Cart = () => {
 
               return (
                 <>
-                  <div className="cart-items-title cart-items-item">
+                  <div className="cart-items-title cart-items-item" key={index}>
                     <img src={url + "/images/" + item.image} alt={item.name} />
                     <p>{item.name}</p>
                     <p>{item.price} ARS</p>
