@@ -3,6 +3,7 @@ import { StoreContext } from "../../context/StoreContext";
 import "./MyOrders.css";
 import axios from "axios";
 import { assets } from "../../assets/assets.js";
+import { toast } from "react-toastify";
 
 const MyOrders = () => {
   const [data, setData] = useState([]);
@@ -49,7 +50,14 @@ const MyOrders = () => {
                   <span>&#x25cf;</span>
                   <b>{order.status}</b>
                 </p>
-                <button>Track Order</button>
+                <button
+                  onClick={() => {
+                    fetchOrders();
+                    toast.success("Orders status updated");
+                  }}
+                >
+                  Track Order
+                </button>
               </div>
             );
           })}
