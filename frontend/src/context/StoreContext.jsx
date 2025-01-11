@@ -71,12 +71,27 @@ const StoreContextProvider = (props) => {
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
+
+    // Check if cartItems is a valid object
+    if (typeof cartItems !== "object" || cartItems === null) {
+      console.error("cartItems must be a valid object");
+      return totalAmount;
+    }
+
     for (const item in cartItems) {
+      // Ensure the value of cartItems[item] is a positive number
       if (cartItems[item] > 0) {
         let itemInfo = foodList.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
+
+        // Check if the product is found in foodList and if the price is a valid number
+        if (itemInfo && typeof itemInfo.price === "number") {
+          totalAmount += itemInfo.price * cartItems[item];
+        } else {
+          console.warn(`Product with ID ${item} not found or invalid price`);
+        }
       }
     }
+
     return totalAmount;
   };
 

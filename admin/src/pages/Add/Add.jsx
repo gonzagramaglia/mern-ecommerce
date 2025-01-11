@@ -5,11 +5,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Add = ({ url }) => {
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     name: "",
     description: "",
-    price: "",
+    price: 0,
     category: "Salads",
   });
 
@@ -21,25 +22,45 @@ const Add = ({ url }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", Number(data.price));
     formData.append("category", data.category);
     formData.append("image", image);
-    const res = await axios.post(`${url}/api/food/add`, formData);
-
-    if (res.data.success) {
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Salads",
-      });
-      setImage(null);
-      toast.success(res.data.message);
-    } else {
-      toast.error(res.data.message);
+    try {
+      const res = await axios.post(`${url}/api/food/add`, formData);
+      if (res.data.success) {
+        setData({
+          name: "",
+          description: "",
+          price: 0,
+          category: "Salads",
+        });
+        setImage(null);
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      if (err.response) {
+        // Server responded with an error status (4xx or 5xx)
+        console.error("Server response error:", err.response.data);
+        console.error("Status code:", err.response.status);
+        console.error("Headers:", err.response.headers);
+        toast.error(err.response.data.message || "Server error occurred.");
+      } else if (err.request) {
+        // Request was made, but no response was received
+        console.error("No response received from the server:", err.request);
+        toast.error("Failed to connect to the server. Please try again later.");
+      } else {
+        // Something else caused the error (e.g., bad configuration)
+        console.error("Request setup error:", err.message);
+        toast.error("Client error: " + err.message);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,15 +122,16 @@ const Add = ({ url }) => {
               <p>Product price</p>
               <input
                 onChange={handleChange}
-                type="Number"
+                type="number"
                 name="price"
-                value={data.price}
+                value={data.price || ""}
                 placeholder="3000 ARS"
+                min="0"
               />
             </div>
           </div>
-          <button type="submit" className="add-btn">
-            ADD
+          <button type="submit" className="add-btn" disabled={loading}>
+            {loading ? "Adding..." : "ADD"}
           </button>
         </form>
       </div>
