@@ -74,3 +74,19 @@
   width: 30px;
   cursor: pointer;
 }
+
+@media (max-width: 900px) {
+  .logo {
+    width: 125px;
+  }
+}
+
+@media (max-width: 750px) {
+  .footer-content-right {
+    display: none;
+  }
+
+  .footer-content {
+    gap: 42px;
+  }
+}
