@@ -16,4 +16,4 @@ export const assets = {
   cross_icon,
 };
 
-export const url = "http://mern-ecommerce-backend-0a90.onrender.com";
+export const url = "https://mern-ecommerce-backend-0a90.onrender.com";
