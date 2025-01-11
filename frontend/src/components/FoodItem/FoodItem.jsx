@@ -11,11 +11,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     <>
       <div className="food-item">
         <div className="food-item-img-container">
-          <img
-            className="food-item-image"
-            src={url + "/images/" + image}
-            alt={name}
-          />
+          <img className="food-item-image" src={image} alt={name} />
           {cartItems[id] === undefined || cartItems[id] === 0 ? (
             <img
               className="add"

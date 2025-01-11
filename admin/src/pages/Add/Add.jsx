@@ -13,10 +13,6 @@ const Add = ({ url }) => {
     category: "Salads",
   });
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;

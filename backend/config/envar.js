@@ -7,4 +7,5 @@ export const {
   MONGODB_URI,
   JWT_SECRET,
   STRIPE_SECRET_KEY,
+  CLOUDINARY_API_SECRET,
 } = process.env;
