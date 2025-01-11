@@ -108,7 +108,7 @@ const Add = ({ url }) => {
                 type="Number"
                 name="price"
                 value={data.price}
-                placeholder="$20"
+                placeholder="3000 ARS"
               />
             </div>
           </div>
